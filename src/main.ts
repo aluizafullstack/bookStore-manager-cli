@@ -1,1 +1,3 @@
-console.log("BookStore Manager CLI iniciado!");
+import { exibirMenuPrincipal } from "./menus/mainMenu";
+
+exibirMenuPrincipal();

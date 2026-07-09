@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/main.ts",
+    "dev": "tsx src/main.ts",
+    "watch": "tsx watch src/main.ts",
     "build": "tsc",
     "start": "node dist/main.js"
   },
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/aluizafullstack/bookstore-manager-cli#readme",
   "devDependencies": {
+    "@types/inquirer": "^9.0.10",
     "@types/node": "^26.1.0",
     "@types/pg": "^8.20.0",
     "tsx": "^4.23.0",
@@ -28,6 +30,7 @@
   },
   "dependencies": {
     "dotenv": "^17.4.2",
+    "inquirer": "^9.3.8",
     "pg": "^8.22.0"
   }
 }
