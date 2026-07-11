@@ -23,7 +23,7 @@ export async function buscarAutorPorId (id: number): Promise<IAutor | null> {
 }
 
 export async function buscarAutorPorNome (nome: string): Promise<IAutor | null> {
-    const sql = ` SELECT * FROM AUTORES WHERE nome = $1`;
+    const sql = ` SELECT * FROM AUTORES WHERE LOWER(nome) = LOWER($1)`;
     const resultado = await pool.query<IAutor> (sql, [nome]);
     return resultado.rows[0] ?? null;
 }

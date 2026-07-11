@@ -6,6 +6,7 @@ export async function cadastrarAutor (nome: string, nacionalidade: string | null
     validarNome(nome);
     validarNacionalidade(nacionalidade);
     validarDataNascimento(dataNascimento);
+    await validarAutorNaoDuplicado(nome);
 
     const dados = await AutorRepository.inserirAutor(nome.trim(), nacionalidade, dataNascimento);
     return new Autor(dados);
@@ -113,4 +114,11 @@ function validarId (id: number) {
     if(!Number.isInteger(id) || id <= 0) {
         throw Error ('ID inválido. Deve ser um número inteiro positivo.');
     }
+}
+
+async function validarAutorNaoDuplicado(nome: string): Promise<void> {
+  const existente = await AutorRepository.buscarAutorPorNome(nome);
+  if (existente) {
+    throw new Error(`Já existe um autor cadastrado com o nome "${nome}".`);
+  }
 }
