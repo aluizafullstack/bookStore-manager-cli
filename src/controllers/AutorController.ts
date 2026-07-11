@@ -7,7 +7,7 @@ export async function cadastrarAutor (nome: string, nacionalidade: string | null
         console.log (`Autor cadastrado com sucesso" ID: ${autor.id}`);
 
     } catch (erro: any) {
-        console.log (`Erro ao cadastrar autor: ${erro.message}`);
+        console.error (`Erro ao cadastrar autor: ${erro.message}`);
     }
 }
 
@@ -31,7 +31,7 @@ export async function listarAutores(): Promise<void> {
         )
 
     } catch (erro: any) {
-        console.log (`Erro ao listar autores: ${erro.message}`);
+        console.error (`Erro ao listar autores: ${erro.message}`);
     }
 }
 

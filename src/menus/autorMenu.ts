@@ -19,6 +19,10 @@ export async function exibirMenuAutor(): Promise<void> {
         switch (resposta.opcao) {
             case 'Cadastrar': {
 
+                // -- Mostra a lista de autores cadastrados antes de cadastrar --
+                console.log('\nAutores cadastrados:');
+                await AutorController.listarAutores();
+
                 const { continuar } = await inquirer.prompt([
                     { type: 'confirm', name: 'continuar', message: 'Deseja cadastrar um novo autor?', default: true },
                 ]);

@@ -6,6 +6,7 @@ export async function cadastrarAutor (nome: string, nacionalidade: string | null
     validarNome(nome);
     validarNacionalidade(nacionalidade);
     validarDataNascimento(dataNascimento);
+    await validarAutorNaoDuplicado(nome);
 
     const dados = await AutorRepository.inserirAutor(nome.trim(), nacionalidade, dataNascimento);
     return new Autor(dados);
@@ -79,7 +80,7 @@ export async function excluirAutorPorNome (nome: string): Promise<void> {
 //                             Funções de validação
 // ===============================================================================
 
-function validarNome (nome: string) {
+function validarNome (nome: string): void {
 
     if (!nome || nome.trim() === '') {
         throw new Error ('O nome do autor é obrigatório.');
@@ -92,14 +93,14 @@ function validarNome (nome: string) {
     }
 }
 
-function validarNacionalidade (nacionalidade: string | null) {
+function validarNacionalidade (nacionalidade: string | null): void {
     
     if (nacionalidade !== null && nacionalidade.trim().length > 150) {
         throw Error ('a nacionalidade não pode ultrapassar 150 caracteres.');
     }
 }
 
-function validarDataNascimento (dataNascimento: Date | null) {
+function validarDataNascimento (dataNascimento: Date | null): void {
     
     if (dataNascimento == null) return;
 
@@ -113,4 +114,11 @@ function validarId (id: number) {
     if(!Number.isInteger(id) || id <= 0) {
         throw Error ('ID inválido. Deve ser um número inteiro positivo.');
     }
+}
+
+async function validarAutorNaoDuplicado(nome: string): Promise<void> {
+  const existente = await AutorRepository.buscarAutorPorNome(nome);
+  if (existente) {
+    throw new Error(`Já existe um autor cadastrado com o nome "${nome}".`);
+  }
 }
