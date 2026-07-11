@@ -1,5 +1,6 @@
 import inquirer from 'inquirer';
 import { exibirMenuAutor } from './autorMenu';
+import { exibirMenuLivro } from './livroMenu';
 
 export async function exibirMenuPrincipal(): Promise<void> {
     let continuar = true;
@@ -19,7 +20,7 @@ export async function exibirMenuPrincipal(): Promise<void> {
                 await exibirMenuAutor();
                 break;
             case 'Livros':
-                console.log('-> Menu de Livros (ainda não está implementado)');
+                await exibirMenuLivro();
                 break;
             case 'Clientes':
                 console.log('-> Menu de Cliente (ainda não está implementado)');
