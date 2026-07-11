@@ -21,7 +21,7 @@
     "declarationMap": true,
 
     // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false, // false — evita ! desnecessário em rows[0] de queries que sempre retornam linha (ex: RETURNING *).
     "exactOptionalPropertyTypes": true,
 
     // Style Options

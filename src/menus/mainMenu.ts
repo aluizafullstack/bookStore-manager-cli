@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import { exibirMenuAutor } from './autorMenu';
 
 export async function exibirMenuPrincipal(): Promise<void> {
     let continuar = true;
@@ -9,20 +10,13 @@ export async function exibirMenuPrincipal(): Promise<void> {
                 type: 'list',
                 name: 'opcao',
                 message: 'BookStore Manager CLI - O que você deseja fazer?',
-                choices: [
-                    'Autores',
-                    'Livros',
-                    'Clientes',
-                    'Emprestimo',
-                    'Relatorios',
-                    'Sair',
-                ],
+                choices: ['Autores','Livros','Clientes','Emprestimo','Relatorios','Sair'],
             },
         ]);
 
         switch (resposta.opcao) {
             case 'Autores':
-                console.log('-> Menu de Autores (ainda não está implementado)');
+                await exibirMenuAutor();
                 break;
             case 'Livros':
                 console.log('-> Menu de Livros (ainda não está implementado)');
