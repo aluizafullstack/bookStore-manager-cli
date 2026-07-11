@@ -79,7 +79,7 @@ export async function excluirAutorPorNome (nome: string): Promise<void> {
 //                             Funções de validação
 // ===============================================================================
 
-function validarNome (nome: string) {
+function validarNome (nome: string): void {
 
     if (!nome || nome.trim() === '') {
         throw new Error ('O nome do autor é obrigatório.');
@@ -92,14 +92,14 @@ function validarNome (nome: string) {
     }
 }
 
-function validarNacionalidade (nacionalidade: string | null) {
+function validarNacionalidade (nacionalidade: string | null): void {
     
     if (nacionalidade !== null && nacionalidade.trim().length > 150) {
         throw Error ('a nacionalidade não pode ultrapassar 150 caracteres.');
     }
 }
 
-function validarDataNascimento (dataNascimento: Date | null) {
+function validarDataNascimento (dataNascimento: Date | null): void {
     
     if (dataNascimento == null) return;
 
