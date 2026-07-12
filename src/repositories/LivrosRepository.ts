@@ -53,3 +53,20 @@ export async function removerLivroPorTitulo (titulo:string): Promise<boolean> {
     const resultado = await pool.query (sql, [titulo]);
     return (resultado.rowCount ?? 0) > 0;
 }
+
+export async function retirarQuantidadeDisponivel (id:number): Promise<void> {
+    const sql = `
+        UPDATE LIVROS
+        SET quantidade_disponivel = quantidade_disponivel - 1,
+            atualizado_em = CURRENT_TIMESTAMP
+        WHERE id = $1`;
+    await pool.query (sql, [id]);
+}
+export async function adicionarQuantidadeDisponivel (id:number): Promise<void> {
+    const sql = `
+        UPDATE LIVROS
+        SET quantidade_disponivel = quantidade_disponivel + 1,
+            atualizado_em = CURRENT_TIMESTAMP
+        WHERE id = $1`;
+    await pool.query (sql, [id]);
+}
