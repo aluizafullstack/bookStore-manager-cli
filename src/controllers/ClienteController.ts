@@ -1,4 +1,5 @@
 import * as ClienteService from '../services/ClienteService';
+import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
 
 export async function cadastrarCliente (nome: string, email: string, telefone: string | null): Promise<void> {
 
@@ -6,8 +7,14 @@ export async function cadastrarCliente (nome: string, email: string, telefone: s
         const cliente = await ClienteService.cadastrarCliente (nome, email, telefone);
         console.log(`Cliente cadastrado com sucesso! ID: ${cliente.id}`);
 
-    } catch (erro: any) {
-        console.error (`Erro ao cadastrar cliente: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -31,8 +38,14 @@ export async function listarClientes(): Promise<void> {
             }))
         );
 
-    } catch(erro: any) {
-        console.error (`Erro ao listar clientes: ${erro.message}`);
+    } catch(erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -52,8 +65,14 @@ export async function consultarClientePorId (id: number): Promise<void> {
             },
         ]);
 
-    } catch (erro:any) {
-        console.error (`Erro ao buscar o cliente por ID: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -73,8 +92,14 @@ export async function consultarClientePorNome (nome: string): Promise<void> {
             },
         ]);
 
-    } catch (erro:any) {
-        console.error (`Erro ao buscar o cliente por Nome: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -95,8 +120,14 @@ export async function atualizarCliente (id: number, nome: string, email: string,
             },
         ]);
 
-    } catch (erro: any) {
-        console.error (`Erro ao atualizar o cliente: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -106,8 +137,14 @@ export async function excluirClientePorId (id: number): Promise<void> {
         await ClienteService.excluirClientePorId(id);
         console.log (`Cliente com id ${id} removido com sucesso!`)
 
-    } catch (erro:any) {
-        console.error (`Erro ao excluir o cliente: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -117,7 +154,13 @@ export async function excluirClientePorNome (nome: string): Promise<void> {
         await ClienteService.excluirClientePorNome(nome);
         console.log (`Cliente com nome ${nome} removido com sucesso!`)
 
-    } catch (erro:any) {
-        console.error (`Erro ao excluir o cliente: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }

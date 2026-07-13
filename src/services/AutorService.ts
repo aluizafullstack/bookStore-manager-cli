@@ -1,5 +1,6 @@
 import * as AutorRepository from '../repositories/AutorRepository';
 import { Autor } from '../models/Autor';
+import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
 
 export async function cadastrarAutor (nome: string, nacionalidade: string | null, dataNascimento: Date | null): Promise<Autor> {
     
@@ -24,7 +25,7 @@ export async function buscasAutorPorId (id: number): Promise<Autor> {
     const dados = await AutorRepository.buscarAutorPorId(id);
 
     if (!dados) {
-        throw new Error (`Autor com id ${id} não encontrado.`);
+        throw new ErroNãoEncontrado (`Autor com id ${id} não encontrado.`);
     }
 
     return new Autor(dados);
@@ -37,7 +38,7 @@ export async function buscarAutorPorNome (nome: string) {
     const dados = await AutorRepository.buscarAutorPorNome(nome.trim());
 
     if (!dados) {
-        throw new Error (`Autor com o nome ${nome} não encontrado.`);
+        throw new ErroNãoEncontrado (`Autor com o nome ${nome} não encontrado.`);
     }
    return new Autor(dados); 
 }
@@ -51,7 +52,7 @@ export async function atualizarDadosAutor (id: number, nome: string, nacionalida
     const dados = await AutorRepository.atualizarAutor(id, nome.trim(), nacionalidade, dataNascimento);
 
     if (!dados) {
-        throw new Error(`Autor com id ${id} não encontrado.`);
+        throw new ErroNãoEncontrado (`Autor com id ${id} não encontrado.`);
     }
     return new Autor(dados);
 }
@@ -62,7 +63,7 @@ export async function excluirAutorPorId (id: number): Promise<void> {
     const remover = await AutorRepository.removerAutorPorId(id);
     
     if (!remover) {
-        throw new Error (`Autor com id ${id} não encontrado.`);
+        throw new ErroNãoEncontrado (`Autor com id ${id} não encontrado.`);
     }
 }
 
@@ -72,7 +73,7 @@ export async function excluirAutorPorNome (nome: string): Promise<void> {
     const remover = await AutorRepository.removerAutorPorNome(nome.trim());
     
     if (!remover) {
-        throw new Error (`Autor com o nome ${nome} não encontrado.`);
+        throw new ErroNãoEncontrado (`Autor com o nome ${nome} não encontrado.`);
     }
 }
 
@@ -83,20 +84,20 @@ export async function excluirAutorPorNome (nome: string): Promise<void> {
 function validarNome (nome: string): void {
 
     if (!nome || nome.trim() === '') {
-        throw new Error ('O nome do autor é obrigatório.');
+        throw new ValidarErro ('O nome do autor é obrigatório.');
     }
     if (nome.trim().length < 2) {
-        throw new Error ('O nome do aoutros deve ter pelo menos 2 caracteres.');
+        throw new ValidarErro ('O nome do aoutros deve ter pelo menos 2 caracteres.');
     }
     if (nome.trim().length > 100) {
-        throw Error ('O nome do autor não pode ultrapassar 100 caracteres.');
+        throw new ValidarErro ('O nome do autor não pode ultrapassar 100 caracteres.');
     }
 }
 
 function validarNacionalidade (nacionalidade: string | null): void {
     
     if (nacionalidade !== null && nacionalidade.trim().length > 150) {
-        throw Error ('a nacionalidade não pode ultrapassar 150 caracteres.');
+        throw new ValidarErro ('a nacionalidade não pode ultrapassar 150 caracteres.');
     }
 }
 
@@ -106,19 +107,19 @@ function validarDataNascimento (dataNascimento: Date | null): void {
 
     const hoje = new Date();
     if (dataNascimento > hoje) {
-        throw Error ('A data de nascimento não pode ser no futuro.');
+        throw new ValidarErro ('A data de nascimento não pode ser no futuro.');
     }
 }
 
 function validarId (id: number) {
     if(!Number.isInteger(id) || id <= 0) {
-        throw Error ('ID inválido. Deve ser um número inteiro positivo.');
+        throw new ValidarErro ('ID inválido. Deve ser um número inteiro positivo.');
     }
 }
 
 async function validarAutorNaoDuplicado(nome: string): Promise<void> {
   const existente = await AutorRepository.buscarAutorPorNome(nome);
   if (existente) {
-    throw new Error(`Já existe um autor cadastrado com o nome "${nome}".`);
+    throw new ValidarErro (`Já existe um autor cadastrado com o nome "${nome}".`);
   }
 }

@@ -1,4 +1,5 @@
 import * as EmprestimoService from '../services/EmprestimoService';
+import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
 
 export async function registrarEmprestimo(fkLivro: number, fkCliente: number, diasParaDevolucao: number): Promise<void> {
     try {
@@ -6,8 +7,14 @@ export async function registrarEmprestimo(fkLivro: number, fkCliente: number, di
         const emprestimo = await EmprestimoService.registrarEmprestimo(fkLivro, fkCliente, diasParaDevolucao);
         console.log(`Empréstimo registrado com sucesso! ID: ${emprestimo.id}`);
 
-    } catch (erro: any) {
-        console.error(`Erro ao registrar empréstimo: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -32,8 +39,14 @@ export async function listarEmprestimos(): Promise<void> {
             }))
         );
 
-    } catch (erro: any) {
-        console.error(`Erro ao listar empréstimos: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -57,8 +70,14 @@ export async function listarEmprestimosAtivos(): Promise<void> {
             }))
         );
 
-    } catch (erro: any) {
-        console.error(`Erro ao listar empréstimos ativos: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -81,8 +100,14 @@ export async function listarEmprestimosDoCliente(fkCliente: number): Promise<voi
             }))
         );
 
-    } catch (erro: any) {
-        console.error(`Erro ao listar empréstimos do cliente: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -105,8 +130,14 @@ export async function listarEmprestimosDoLivro(fkLivro: number): Promise<void> {
             }))
         );
 
-    } catch (erro: any) {
-        console.error(`Erro ao listar empréstimos do livro: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -128,8 +159,14 @@ export async function consultarEmprestimoPorId(id: number): Promise<void> {
             },
         ]);
 
-    } catch (erro: any) {
-        console.error(`Erro ao listar empréstimos por ID: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -140,7 +177,13 @@ export async function devolverLivro(id: number): Promise<void> {
         const emprestimo = await EmprestimoService.devolverLivro(id);
         console.log(`Devolução registrada com sucesso! Empréstimo ID: ${emprestimo.id}`);
 
-    } catch (erro: any) {
-        console.error(`Erro ao devolver empréstimo: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }

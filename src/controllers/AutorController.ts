@@ -1,4 +1,5 @@
 import * as AutorService from '../services/AutorService';
+import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
 
 export async function cadastrarAutor (nome: string, nacionalidade: string | null, dataNascimento: Date | null): Promise<void> {
 
@@ -6,8 +7,14 @@ export async function cadastrarAutor (nome: string, nacionalidade: string | null
         const autor = await AutorService.cadastrarAutor (nome, nacionalidade, dataNascimento);
         console.log (`Autor cadastrado com sucesso" ID: ${autor.id}`);
 
-    } catch (erro: any) {
-        console.error (`Erro ao cadastrar autor: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -30,8 +37,14 @@ export async function listarAutores(): Promise<void> {
             }))
         )
 
-    } catch (erro: any) {
-        console.error (`Erro ao listar autores: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -50,8 +63,14 @@ export async function consultarAutorPorId (id: number): Promise<void> {
             },
         ]);
 
-    } catch (erro: any) {
-        console.error (`Erro ao buscar o autor por Id: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -71,8 +90,14 @@ export async function consultarAutorPorNome (nome: string): Promise<void> {
             },
         ]);
 
-    } catch (erro: any) {
-        console.error (`Erro ao buscar o autor por nome: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -93,8 +118,14 @@ export async function atualizarAutor (id: number, nome: string, nacionalidade: s
             },  
         ]);
 
-    } catch (erro: any) {
-        console.error (`Erro ao atualizar o autor: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
 
     }
 }
@@ -105,8 +136,14 @@ export async function excluirAutorPorId (id:number): Promise<void> {
         await AutorService.excluirAutorPorId (id);
         console.log (`Autor com id ${id} removido com sucesso!`);
 
-    } catch (erro:any) {
-        console.error (`Erro ao remover o Autor por Id: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }
 
@@ -116,7 +153,13 @@ export async function excluirAutorPorNome (nome: string): Promise<void> {
         await AutorService.excluirAutorPorNome (nome);
         console.log (`Autor com o nome ${nome} removido com sucesso!`);
 
-    } catch (erro: any) {
-        console.error (`Erro ao tentar excluir o Autor por nome: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        } 
     }
 }

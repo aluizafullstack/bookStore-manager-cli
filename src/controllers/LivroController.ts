@@ -1,4 +1,5 @@
 import * as LivroService from '../services/LivroService';
+import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
 
 export async function cadastrarLivro (titulo: string, fkAutor: number, quantidadeTotal: number): Promise<void> {
     
@@ -6,8 +7,14 @@ export async function cadastrarLivro (titulo: string, fkAutor: number, quantidad
         const livro = await LivroService.cadastrarLivro(titulo, fkAutor, quantidadeTotal);
         console.log (`Livro cadastrado com sucesso! ID: ${livro.id}`);
     
-    } catch (erro: any) {
-        console.error (`Erro ao cadastrar o livro: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -32,8 +39,14 @@ export async function listarLivros(): Promise<void> {
             }))
         );
 
-    } catch (erro: any) {
-        console.error (`Erro ao listar livros: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -55,8 +68,14 @@ export async function consultarLivroPorId (id: number): Promise<void> {
             },
         ]);
 
-    } catch (erro: any) {
-        console.error (`Erro ao bucas livro por Id: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -78,8 +97,14 @@ export async function consultarLivroPorTitulo (titulo: string): Promise<void> {
             },
         ]);
 
-    } catch (erro: any) {
-        console.error (`Erro ao bucas livro por Titulo: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -102,8 +127,14 @@ export async function atulizarDadosLivro (id:number, titulo:string, fkAutor:numb
             }
         ])
 
-    } catch (erro: any) {
-        console.error (`Erro ao atulizar os dados do livro: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -114,8 +145,14 @@ export async function excluirLivroPorId (id:number): Promise<void> {
         await LivroService.excluirLivroPorId(id);
         console.log (`Livro com o id ${id} removido com sucesso!`);
 
-    } catch (erro: any) {
-        console.error (`Erro ao tentar excluir o Livro por id: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
 
@@ -126,7 +163,13 @@ export async function excluirLivroPorTitulo (titulo:string): Promise<void> {
         await LivroService.excluirLivroPorTitulo(titulo);
         console.log (`Livro com o Titulo ${titulo} removido com sucesso!`);
 
-    } catch (erro: any) {
-        console.error (`Erro ao tentar excluir o Livro por Titulo: ${erro.message}`);
+    } catch (erro) {
+        if (erro instanceof ErroNãoEncontrado) {
+            console.error (`Não encontrado: ${erro.message}`);
+        } else if (erro instanceof ValidarErro) {
+            console.error (`Dados invalidos: ${erro.message}`);
+        } else {
+            console.error (`Erro inesperado: ${(erro as Error).message}`);
+        }
     }
 }
