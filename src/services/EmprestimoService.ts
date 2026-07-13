@@ -45,6 +45,31 @@ export async function listarEmprestimosAtivos(): Promise<Emprestimo[]> {
     return dados.map(e => new Emprestimo(e));
 }
 
+export async function listarEmprestimosDoCliente (fkCliente: number): Promise<Emprestimo[]> {
+    validarId(fkCliente);
+
+    const cliente = await ClienteRepository.buscarClientePorId(fkCliente);
+    if (!cliente) {
+        throw new Error(`Cliente com id ${fkCliente} não encontrado.`);
+    }
+
+    const dados = await EmprestimoRepository.listarEmprestimoPorCliente(fkCliente);
+    return dados.map(c => new Emprestimo(c));
+
+}
+
+export async function listarEmprestimosDoLivro(fkLivro: number): Promise<Emprestimo[]> {
+    validarId(fkLivro);
+
+    const livro = await LivroRepository.buscarLivroPorId(fkLivro);
+    if (!livro) {
+        throw new Error(`Livro com id ${fkLivro} não encontrado.`);
+    }
+
+     const dados = await EmprestimoRepository.listarEmprestimosPorLivro(fkLivro);
+     return dados.map(l => new Emprestimo(l));
+}
+
 export async function buscarEmprestimoPorId(id: number): Promise<Emprestimo> {
     
     validarId(id);

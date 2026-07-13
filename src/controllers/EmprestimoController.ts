@@ -62,6 +62,54 @@ export async function listarEmprestimosAtivos(): Promise<void> {
     }
 }
 
+export async function listarEmprestimosDoCliente(fkCliente: number): Promise<void> {
+    
+    try {
+
+        const emprestimos = await EmprestimoService.listarEmprestimosDoCliente(fkCliente);
+        if (emprestimos.length === 0) {
+             console.log('O cliente informado não possui empréstimos registrados.');
+             return;
+        }
+
+        console.table(
+            emprestimos.map((e) => ({
+                ID: e.id,
+                LivroID: e.fkLivro,
+                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
+                Status: e.status,
+            }))
+        );
+
+    } catch (erro: any) {
+        console.error(`Erro ao listar empréstimos do cliente: ${erro.message}`);
+    }
+}
+
+export async function listarEmprestimosDoLivro(fkLivro: number): Promise<void> {
+    
+    try {
+
+        const emprestimos = await EmprestimoService.listarEmprestimosDoLivro(fkLivro);
+        if (emprestimos.length === 0) {
+            console.log('O livro informado não possui empréstimos registrados.');
+            return;
+        }
+
+        console.table(
+            emprestimos.map((e) => ({
+                ID: e.id,
+                ClienteID: e.fkCliente,
+                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
+                Status: e.status,
+            }))
+        );
+
+    } catch (erro: any) {
+        console.error(`Erro ao listar empréstimos do livro: ${erro.message}`);
+    }
+}
+
 export async function consultarEmprestimoPorId(id: number): Promise<void> {
 
     try {

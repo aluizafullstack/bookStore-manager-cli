@@ -13,7 +13,7 @@ export async function exibirMenuEmprestimo(): Promise<void> {
                 name: 'opcao',
                 pageSize: 10,
                 message: 'Menu de Autores',
-                choices: ['Registrar Empréstimo', 'Devolver Livro', 'Listar Todos', 'Listar Ativos', 'Consultar por ID', 'Voltar'],
+                choices: ['Registrar Empréstimo', 'Devolver Livro', 'Listar Todos', 'Listar Ativos', 'Consultar por ID', 'Consultar por Cliente', 'Consultar por Livro', 'Voltar'],
             },
         ]);
 
@@ -81,6 +81,24 @@ export async function exibirMenuEmprestimo(): Promise<void> {
                     { type: 'number', name: 'id', message: 'ID do empréstimo:' },
                 ]);
                 await EmprestimoController.consultarEmprestimoPorId(id);
+                break;
+            }
+
+            case 'Consultar por Cliente': {
+
+                const { fkCliente } = await inquirer.prompt ([
+                    { type: 'number', name: 'fkCliente', message: 'ID do Cliente:' },
+                ]);
+                await EmprestimoController.listarEmprestimosDoCliente(fkCliente);
+                break;
+            }
+
+            case 'Consultar por Livro': {
+
+                const { fkLivro } = await inquirer.prompt ([
+                    { type: 'number', name: 'fkLivro', message: 'ID do Livro:' },
+                ]);
+                await EmprestimoController.listarEmprestimosDoLivro(fkLivro);
                 break;
             }
 

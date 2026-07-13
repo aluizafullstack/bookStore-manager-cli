@@ -34,6 +34,12 @@ export async function listarEmprestimoPorCliente (fkCliente: number): Promise<IE
     return resultado.rows;
 }
 
+export async function listarEmprestimosPorLivro (fkLivro: number): Promise<IEmprestimo[]> {
+    const sql = `SELECT * FROM EMPRESTIMOS WHERE fk_livro = $1 ORDER BY data_emprestimo DESC`;
+    const resultado = await pool.query<IEmprestimo>(sql, [fkLivro]);
+    return resultado.rows;
+}
+
 export async function registrarDevolucao (id: number, dataDevolucaoReal: Date): Promise<IEmprestimo | null> {
     const sql = `
         UPDATE EMPRESTIMOS
