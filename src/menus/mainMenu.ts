@@ -3,6 +3,7 @@ import { exibirMenuAutor } from './autorMenu';
 import { exibirMenuLivro } from './livroMenu';
 import { exibirMenuCliente } from './cliente.Menu';
 import { exibirMenuEmprestimo } from './emprestimoMenu';
+import { exibirMenuRelatorio } from './RelatorioMenu';
 
 export async function exibirMenuPrincipal(): Promise<void> {
     let continuar = true;
@@ -31,7 +32,7 @@ export async function exibirMenuPrincipal(): Promise<void> {
                 await exibirMenuEmprestimo();
                 break;
             case 'Relatorios':
-                console.log('-> Menu de Relatorios (ainda não está implementado)');
+                await exibirMenuRelatorio();
                 break;
             case 'Sair':
                 continuar = false;
