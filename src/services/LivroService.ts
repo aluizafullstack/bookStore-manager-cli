@@ -120,10 +120,10 @@ async function validarAutorExistente (fkAutor: number): Promise<void> {
 }
 
 async function validarLivroNaoDuplicado(titulo: string): Promise<void> {
-  const existente = await LivrosRepository.removerLivroPorTitulo(titulo);
-  if (existente) {
-    throw new ValidarErro (`Esse autor já tem um livro cadastrado com o título "${titulo}".`);
-  }
+    const existente = await LivrosRepository.removerLivroPorTitulo(titulo);
+    if (existente) {
+        throw new ValidarErro (`Esse autor já tem um livro cadastrado com o título "${titulo}".`);
+    }
 }
 
 function validarQuantidade (quantidade: number): void {

@@ -67,8 +67,8 @@ export async function listarEmprestimosDoLivro(fkLivro: number): Promise<Emprest
         throw new ErroNãoEncontrado (`Livro com id ${fkLivro} não encontrado.`);
     }
 
-     const dados = await EmprestimoRepository.listarEmprestimosPorLivro(fkLivro);
-     return dados.map(l => new Emprestimo(l));
+    const dados = await EmprestimoRepository.listarEmprestimosPorLivro(fkLivro);
+    return dados.map(l => new Emprestimo(l));
 }
 
 export async function buscarEmprestimoPorId(id: number): Promise<Emprestimo> {
@@ -112,13 +112,13 @@ export async function devolverLivro(id: number): Promise<Emprestimo> {
 // ===============================================================================
 
 function validarId(id: number): void {
-  if (!Number.isInteger(id) || id <= 0) {
-    throw new ValidarErro ('ID inválido. Deve ser um número inteiro positivo.');
-  }
+    if (!Number.isInteger(id) || id <= 0) {
+        throw new ValidarErro ('ID inválido. Deve ser um número inteiro positivo.');
+    }
 }
 
 function validarDias(dias: number): void {
-  if (!Number.isInteger(dias) || dias <= 0) {
-    throw new ValidarErro ('O prazo para devolução deve ser um número inteiro maior que zero.');
-  }
+    if (!Number.isInteger(dias) || dias <= 0) {
+        throw new ValidarErro ('O prazo para devolução deve ser um número inteiro maior que zero.');
+    }
 }

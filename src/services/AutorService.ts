@@ -40,7 +40,7 @@ export async function buscarAutorPorNome (nome: string) {
     if (!dados) {
         throw new ErroNãoEncontrado (`Autor com o nome ${nome} não encontrado.`);
     }
-   return new Autor(dados); 
+    return new Autor(dados); 
 }
 
 export async function atualizarDadosAutor (id: number, nome: string, nacionalidade: string | null, dataNascimento: Date | null): Promise<Autor> {
@@ -118,8 +118,8 @@ function validarId (id: number) {
 }
 
 async function validarAutorNaoDuplicado(nome: string): Promise<void> {
-  const existente = await AutorRepository.buscarAutorPorNome(nome);
-  if (existente) {
-    throw new ValidarErro (`Já existe um autor cadastrado com o nome "${nome}".`);
-  }
+    const existente = await AutorRepository.buscarAutorPorNome(nome);
+    if (existente) {
+        throw new ValidarErro (`Já existe um autor cadastrado com o nome "${nome}".`);
+    }
 }

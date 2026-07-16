@@ -1,5 +1,6 @@
 import * as EmprestimoService from '../services/EmprestimoService';
 import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
+import { formatarDataHora, formatarDataOuTraco} from '../utils/formatters';
 
 export async function registrarEmprestimo(fkLivro: number, fkCliente: number, diasParaDevolucao: number): Promise<void> {
     try {
@@ -32,9 +33,9 @@ export async function listarEmprestimos(): Promise<void> {
                 ID: e.id,
                 LivroID: e.fkLivro,
                 ClienteID: e.fkCliente,
-                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
-                DevolucaoPrevista: e.dataDevolucaoPrevista.toLocaleDateString('pt-BR'),
-                DevolucaoReal: e.dataDevolucaoReal ? e.dataDevolucaoReal.toLocaleDateString('pt-BR') : '-',
+                DataEmprestimo: formatarDataHora(e.dataEmprestimo),
+                DevolucaoPrevista: formatarDataHora(e.dataDevolucaoPrevista),
+                DevolucaoReal: formatarDataOuTraco(e.dataDevolucaoReal),
                 Status: e.status,
             }))
         );
@@ -65,8 +66,8 @@ export async function listarEmprestimosAtivos(): Promise<void> {
                 ID: e.id,
                 LivroID: e.fkLivro,
                 ClienteID: e.fkCliente,
-                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
-                DevolucaoPrevista: e.dataDevolucaoPrevista.toLocaleDateString('pt-BR'),
+                DataEmprestimo: formatarDataHora(e.dataEmprestimo),
+                DevolucaoPrevista: formatarDataHora(e.dataDevolucaoPrevista),
             }))
         );
 
@@ -87,15 +88,15 @@ export async function listarEmprestimosDoCliente(fkCliente: number): Promise<voi
 
         const emprestimos = await EmprestimoService.listarEmprestimosDoCliente(fkCliente);
         if (emprestimos.length === 0) {
-             console.log('O cliente informado não possui empréstimos registrados.');
-             return;
+            console.log('O cliente informado não possui empréstimos registrados.');
+            return;
         }
 
         console.table(
             emprestimos.map((e) => ({
                 ID: e.id,
                 LivroID: e.fkLivro,
-                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
+                DataEmprestimo: formatarDataHora(e.dataEmprestimo),
                 Status: e.status,
             }))
         );
@@ -125,7 +126,7 @@ export async function listarEmprestimosDoLivro(fkLivro: number): Promise<void> {
             emprestimos.map((e) => ({
                 ID: e.id,
                 ClienteID: e.fkCliente,
-                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
+                DataEmprestimo: formatarDataHora(e.dataEmprestimo),
                 Status: e.status,
             }))
         );
@@ -152,9 +153,9 @@ export async function consultarEmprestimoPorId(id: number): Promise<void> {
                 ID: e.id,
                 LivroID: e.fkLivro,
                 ClienteID: e.fkCliente,
-                DataEmprestimo: e.dataEmprestimo.toLocaleDateString('pt-BR'),
-                DevolucaoPrevista: e.dataDevolucaoPrevista.toLocaleDateString('pt-BR'),
-                DevolucaoReal: e.dataDevolucaoReal ? e.dataDevolucaoReal.toLocaleDateString('pt-BR') : '-',
+                DataEmprestimo: formatarDataHora(e.dataEmprestimo),
+                DevolucaoPrevista: formatarDataHora(e.dataDevolucaoPrevista),
+                DevolucaoReal: formatarDataOuTraco(e.dataDevolucaoReal),
                 Status: e.status,
             },
         ]);

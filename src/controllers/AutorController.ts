@@ -1,5 +1,6 @@
 import * as AutorService from '../services/AutorService';
 import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
+import { formatarDataHora } from '../utils/formatters';
 
 export async function cadastrarAutor (nome: string, nacionalidade: string | null, dataNascimento: Date | null): Promise<void> {
 
@@ -32,8 +33,8 @@ export async function listarAutores(): Promise<void> {
                 ID: a.id,
                 Nome: a.nome,
                 Nacionalidade: a.nacionalidade ?? '-',
-                Criado: a.criadoEm.toLocaleString ('pt-BR'),
-                Atualizado: a.atualizadoEm.toLocaleString ('pt-BR'),
+                Criado: formatarDataHora(a.criadoEm),
+                Atualizado: formatarDataHora(a.atualizadoEm),
             }))
         )
 
@@ -58,8 +59,8 @@ export async function consultarAutorPorId (id: number): Promise<void> {
                 ID: autor.id,
                 Nome: autor.nome,
                 Nacionalidade: autor.nacionalidade ?? '-',
-                Criado: autor.criadoEm.toLocaleString ('pt-BR'),
-                Atualizado: autor.atualizadoEm.toLocaleString ('pt-BR'),
+                Criado: formatarDataHora(autor.criadoEm),
+                Atualizado: formatarDataHora(autor.atualizadoEm),
             },
         ]);
 
@@ -85,8 +86,8 @@ export async function consultarAutorPorNome (nome: string): Promise<void> {
                 ID: autor.id,
                 Nome: autor.nome,
                 Nacionalidade: autor.nacionalidade ?? '-',
-                Criado: autor.criadoEm.toLocaleString ('pt-BR'),
-                Atualizado: autor.atualizadoEm.toLocaleString ('pt-BR'),
+                Criado: formatarDataHora(autor.criadoEm),
+                Atualizado: formatarDataHora(autor.atualizadoEm),
             },
         ]);
 
@@ -113,8 +114,8 @@ export async function atualizarAutor (id: number, nome: string, nacionalidade: s
                 ID: autor.id,
                 Nome: autor.nome,
                 Nacionalidade: autor.nacionalidade ?? '-',
-                Criado: autor.criadoEm.toLocaleString ('pt-BR'),
-                Atualizado: autor.atualizadoEm.toLocaleString ('pt-BR')
+                Criado: formatarDataHora(autor.criadoEm),
+                Atualizado: formatarDataHora(autor.atualizadoEm)
             },  
         ]);
 

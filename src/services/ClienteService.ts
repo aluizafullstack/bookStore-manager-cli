@@ -132,14 +132,14 @@ function validarEmail(email: string): void {
 }
 
 function validarTelefone(telefone: string | null): void {
-  if (telefone !== null && telefone.trim().length > 20) {
-    throw new ValidarErro ('O telefone não pode ultrapassar 20 caracteres.');
-  }
+    if (telefone !== null && telefone.trim().length > 20) {
+        throw new ValidarErro ('O telefone não pode ultrapassar 20 caracteres.');
+    }
 }
 
 async function validarEmailClienteNaoDuplicado(email: string): Promise<void> {
-  const existente = await ClienteRepository.buscarClientePorEmail(email);
-  if (existente) {
-    throw new ValidarErro (`Já existe um cliente cadastrado com o nome "${email}".`);
-  }
+    const existente = await ClienteRepository.buscarClientePorEmail(email);
+    if (existente) {
+        throw new ValidarErro (`Já existe um cliente cadastrado com o nome "${email}".`);
+    }
 }

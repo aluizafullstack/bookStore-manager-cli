@@ -1,5 +1,6 @@
 import * as LivroService from '../services/LivroService';
 import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
+import { formatarDataHora } from '../utils/formatters';
 
 export async function cadastrarLivro (titulo: string, fkAutor: number, quantidadeTotal: number): Promise<void> {
     
@@ -34,8 +35,8 @@ export async function listarLivros(): Promise<void> {
                 Autor_ID: l.fk_autor,
                 Total: l.quantidade_total,
                 Disponivel: l.quantidade_disponivel,
-                Criado: l.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: l.atualizaEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(l.criadoEm),
+                Atualizado: formatarDataHora(l.atualizaEm),
             }))
         );
 
@@ -63,8 +64,8 @@ export async function consultarLivroPorId (id: number): Promise<void> {
                 Autor_ID: livro.fk_autor,
                 Total: livro.quantidade_total,
                 Disponivel: livro.quantidade_disponivel,
-                Criado: livro.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: livro.atualizaEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(livro.criadoEm),
+                Atualizado: formatarDataHora(livro.atualizaEm),
             },
         ]);
 
@@ -92,8 +93,8 @@ export async function consultarLivroPorTitulo (titulo: string): Promise<void> {
                 Autor_ID: livro.fk_autor,
                 Total: livro.quantidade_total,
                 Disponivel: livro.quantidade_disponivel,
-                Criado: livro.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: livro.atualizaEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(livro.criadoEm),
+                Atualizado: formatarDataHora(livro.atualizaEm),
             },
         ]);
 
@@ -122,8 +123,8 @@ export async function atulizarDadosLivro (id:number, titulo:string, fkAutor:numb
                 Autor_ID: livro.fk_autor,
                 Total: livro.quantidade_total,
                 Disponivel: livro.quantidade_disponivel,
-                Criado: livro.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: livro.atualizaEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(livro.criadoEm),
+                Atualizado: formatarDataHora(livro.atualizaEm),
             }
         ])
 

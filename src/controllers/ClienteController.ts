@@ -1,5 +1,6 @@
 import * as ClienteService from '../services/ClienteService';
 import { ErroNãoEncontrado, ValidarErro } from '../utils/errors';
+import { formatarDataHora } from '../utils/formatters';
 
 export async function cadastrarCliente (nome: string, email: string, telefone: string | null): Promise<void> {
 
@@ -33,8 +34,8 @@ export async function listarClientes(): Promise<void> {
                 Nome: c.nome,
                 Email: c.email,
                 Telefone: c.telefone ?? '-',
-                Criado: c.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: c.atualizadoEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(c.criadoEm),
+                Atualizado: formatarDataHora(c.atualizadoEm),
             }))
         );
 
@@ -60,8 +61,8 @@ export async function consultarClientePorId (id: number): Promise<void> {
                 Nome: cliente.nome,
                 Email: cliente.email,
                 Telefone: cliente.telefone ?? '-',
-                Criado: cliente.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: cliente.atualizadoEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(cliente.criadoEm),
+                Atualizado: formatarDataHora(cliente.atualizadoEm),
             },
         ]);
 
@@ -87,8 +88,8 @@ export async function consultarClientePorNome (nome: string): Promise<void> {
                 Nome: cliente.nome,
                 Email: cliente.email,
                 Telefone: cliente.telefone ?? '-',
-                Criado: cliente.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: cliente.atualizadoEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(cliente.criadoEm),
+                Atualizado: formatarDataHora(cliente.atualizadoEm),
             },
         ]);
 
@@ -115,8 +116,8 @@ export async function atualizarCliente (id: number, nome: string, email: string,
                 Nome: cliente.nome,
                 Email: cliente.email,
                 Telefone: cliente.telefone ?? '-',
-                Criado: cliente.criadoEm.toLocaleString('pt-BR'),
-                Atualizado: cliente.atualizadoEm.toLocaleString('pt-BR'),
+                Criado: formatarDataHora(cliente.criadoEm),
+                Atualizado: formatarDataHora(cliente.atualizadoEm),
             },
         ]);
 
