@@ -7,7 +7,8 @@
     "dev": "tsx src/main.ts",
     "watch": "tsx watch src/main.ts",
     "build": "tsc",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,15 @@
   },
   "homepage": "https://github.com/aluizafullstack/bookstore-manager-cli#readme",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/inquirer": "^9.0.10",
     "@types/node": "^26.1.0",
     "@types/pg": "^8.20.0",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
     "tsx": "^4.23.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.64.0"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
