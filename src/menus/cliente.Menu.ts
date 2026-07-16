@@ -10,7 +10,7 @@ export async function exibirMenuCliente(): Promise<void> {
                 type: 'list',
                 name: 'opcao',
                 pageSize: 10,
-                message: 'Menu de Autores',
+                message: 'Menu de Clientes',
                 choices: ['Cadastrar', 'Listar', 'Consultar por ID', 'Consultar por Nome', 'Atualizar', 'Remover por ID', 'Remover por Nome', 'Voltar'],
             },
         ]);
