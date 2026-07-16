@@ -12,7 +12,7 @@ export async function exibirMenuEmprestimo(): Promise<void> {
                 type: 'list',
                 name: 'opcao',
                 pageSize: 10,
-                message: 'Menu de Autores',
+                message: 'Menu de Empréstimos',
                 choices: ['Registrar Empréstimo', 'Devolver Livro', 'Listar Todos', 'Listar Ativos', 'Consultar por ID', 'Consultar por Cliente', 'Consultar por Livro', 'Voltar'],
             },
         ]);
