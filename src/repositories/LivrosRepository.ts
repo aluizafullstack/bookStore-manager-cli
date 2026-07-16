@@ -3,7 +3,7 @@ import { ILivro } from '../models/ILivro';
 
 export async function inserirLivro (titulo: string, fkAutor: number, quantidadeTotal: number, quantidadeDisponivel: number): Promise<ILivro> {
     const sql = `
-        INSERT INTO LIVROS (titulo, fk_autores, quantidade_total, quantidade_disponivel)
+        INSERT INTO LIVROS (titulo, fk_autor, quantidade_total, quantidade_disponivel)
         VALUES ($1, $2, $3, $4)
         RETURNING *`; // O criado_em e o atualizado_em é preenchido pelo banco via DEFAULT CURRENT_TIMESTAMP 
     const resultado = await pool.query<ILivro> (sql, [titulo, fkAutor, quantidadeTotal, quantidadeDisponivel]);
