@@ -40,7 +40,7 @@ export async function atualizarCliente (id:number, nome: string, email: string, 
         SET nome = $1,
             email = $2,
             telefone = $3,
-            atualizado_em = CORRENT_TIMESTAMP
+            atualizado_em = CURRENT_TIMESTAMP
         WHERE id = $4
         RETURNING *`
     const resultado = await pool.query<ICliente> (sql, [nome, email, telefone, id]);
