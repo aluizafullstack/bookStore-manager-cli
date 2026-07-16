@@ -35,7 +35,7 @@ export async function atulizarLivros (id: number, titulo: string, fkAutor: numbe
             fk_autor = $2,
             quantidade_total = $3,
             quantidade_disponivel = $4,
-            atualiza_em = CORRENT_TIMESTAMP
+            atualizado_em = CURRENT_TIMESTAMP
         WHERE id = $5
         RETURNING *`
     const resultado = await pool.query<ILivro> (sql, [titulo, fkAutor, quantidadeTotal, quantidadeDisponivel]);

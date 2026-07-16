@@ -34,7 +34,7 @@ export async function atualizarAutor (id: number, nome: string, nacionalidade: s
         SET nome = $1,
             nacionalidade = $2,
             data_nascimento = $3,
-            atualiza_em = CORRENT_TIMESTAMP
+            atualizado_em = CURRENT_TIMESTAMP
         WHERE id = $4
         RETURNING *`
     const resultado = await pool.query<IAutor> (sql, [nome,nacionalidade, dataNascimento, id]);
