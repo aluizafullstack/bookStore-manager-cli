@@ -357,9 +357,9 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstranção do cadastro de um autor.*
 
-```text
-[Imagem: cadastro-autor.png]
-```
+<p align="center">
+  <img src="./assets/cadastro_autor.png" width="350">
+</p>
 
 ---
 
@@ -367,9 +367,9 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstrando do cadastro de um livro.*
 
-```text
-[Imagem: cadastro-livro.png]
-```
+<p align="center">
+  <img src="./assets/cadastrar_livro.png" width="350">
+</p>
 
 ---
 
@@ -377,9 +377,9 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstrando do cadastro de um cliente.*
 
-```text
-[Imagem: cadastro-cliente.png]
-```
+<p align="center">
+  <img src="./assets/cadastro_cliente.png" width="350">
+</p>
 
 ---
 
@@ -387,9 +387,9 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstrando um empréstimo realizado com sucesso.*
 
-```text
-[Imagem: emprestimo.png]
-```
+<p align="center">
+  <img src="./assets/cadastro_emprestimo.png" width="350">
+</p>
 
 ---
 
@@ -397,19 +397,23 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstrando a devolução de um livro.*
 
-```text
-[Imagem: devolucao.png]
-```
+<p align="center">
+  <img src="./assets/devolucao_emprestimo.png" width="350">
+</p>
 
 ---
 
 ## Relatórios
 
-> *Demonstração de relatórios.*
+> *Demonstração de alguns relatórios.*
 
-```text
-[Imagem: relatorio.png]
-```
+| Emprestimos Ativos | Livros Disponiveis |
+|:--------------:|:------------:|
+| <img src="./assets/relatorio_emprestimos_ativos.png" width="150%"> | <img src="./assets/relatorio_livros_disponiveis.png" width="150%">
+
+| Menu Emprestimos | Livros Emprestados |
+|:---------:|:-------:|
+| <img src="./assets/relatorio_quantidade_emprestimos_por_livro.png" width="150%"> | <img src="./assets/relatorio_livros_emprestados.png" width="150%"> |
 
 ---
 
