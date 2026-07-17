@@ -6,7 +6,7 @@ export async function inserirEmprestimo (fkLivro: number, fkCliente: number, dat
         INSERT INTO EMPRESTIMOS (fk_livro, fk_cliente, data_emprestimo, data_devolucao_prevista)
         VALUES ($1, $2, $3, $4)
         RETURNING*`;
-    const resultado = await pool.query<IEmprestimo> (sql, [fkLivro, fkLivro, dataEmprestimo, dataDevolucaoPrevista]);
+    const resultado = await pool.query<IEmprestimo> (sql, [fkLivro, fkCliente, dataEmprestimo, dataDevolucaoPrevista]);
     return resultado.rows[0]; 
 }
 
