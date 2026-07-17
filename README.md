@@ -4,7 +4,7 @@
 
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badgePostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-GitFlow-F05032?logo=git&logoColor=white)
 
 Projeto desenvolvido como atividade avaliativa do **Módulo 01 – Desenvolvedor Back-End**, tendo como objetivo consolidar conhecimentos em **TypeScript**, **PostgreSQL**, **SQL**, **Programação Orientada a Objetos**, **Arquitetura em Camadas**, **GitFlow** e **boas práticas de desenvolvimento**.
