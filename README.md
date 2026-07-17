@@ -256,6 +256,7 @@ livrariasctec/
 - Cadastrar autores.
 - Listar todos os autores cadastrados.
 - Buscar autor por ID.
+- Buscar autor por Nome
 - Atualizar informações de um autor.
 - Excluir autores.
 - Validar dados antes da gravação.
@@ -266,7 +267,8 @@ livrariasctec/
 
 - Cadastrar livros.
 - Listar todos os livros.
-- Buscar livro por ID.
+- Consultar livro por ID.
+- Consultar livro por titulo
 - Atualizar informações de livros.
 - Excluir livros.
 - Associar livros aos respectivos autores.
@@ -279,6 +281,7 @@ livrariasctec/
 - Cadastrar clientes.
 - Listar clientes cadastrados.
 - Buscar cliente por ID.
+- Buscar cliente por Nome
 - Atualizar dados cadastrais.
 - Excluir clientes.
 - Validar CPF.
@@ -420,7 +423,7 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 | Livros cadastrados por Autor
 |:---------:|
-| <img src="./assets/relatorio_livorsCadastrados_por_autor.png" width="80%"> 
+| <img src="./assets/relatorio_livorsCadastrados_por_autor.png" width="55%"> 
 
 ---
 
@@ -516,4 +519,4 @@ O gerenciamento das atividades foi realizado utilizando um quadro Kanban no Trel
 
 # Considerações Finais
 
-Este projeto consolidou conhecimentos de Back-End com **Node.js**, **TypeScript** e **PostgreSQL**, aplicando POO, arquitetura em camadas, modelagem de banco e boas práticas — além de experiência prática com **Git/GitFlow** e organização via **Kanban**.
+Este projeto consolidou conhecimentos de Back-End com **Node.js**, **TypeScript** e **PostgreSQL**, aplicando POO, arquitetura em camadas, modelagem de banco e boas práticas — além de experiência prática com **Git/GitFlow** e organização via **Kanban - Trello**.
