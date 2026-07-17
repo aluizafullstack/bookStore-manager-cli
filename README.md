@@ -21,12 +21,15 @@ Projeto desenvolvido como atividade avaliativa do **Módulo 01 – Desenvolvedor
 - [Instalação](#instalação)
 - [Execução do Projeto](#execução-do-projeto)
 - [Arquitetura do Projeto](#arquitetura-do-projeto)
-- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Estrutura das Pastas](#estrutura-das-pastas)
 - [Funcionalidades](#funcionalidades)
 - [Exemplos de Execução](#exemplos-de-execução)
 - [Estratégia de Branches](#estratégia-de-branches)
+- [Integrantes](#integrante)
 - [Quadro Kanban](#quadro-kanban)
 - [Melhorias Futuras](#melhorias-futuras)
+- [Considerações Finais](#considerações-finais)
+
 
 ---
 
@@ -117,7 +120,7 @@ Também é necessário possuir uma conta no **GitHub** para acesso ao repositór
 
 1. Abra o pgAdmin (ou o `psql`) e crie um banco de dados chamado `bookstore_manager_cli`:
 ```sql
-   CREATE DATABASE bookstore_manager_cli;
+    CREATE DATABASE bookstore_manager_cli;
 ```
 
 2. Execute o script de criação das tabelas, localizado em `src/database/schema.sql`. No pgAdmin:
@@ -237,7 +240,7 @@ livrariasctec/
 ├── dist/                     # Arquivos JavaScript gerados pelo TypeScript
 ├── .env                      # Variáveis de ambiente (não versionado)
 ├── .gitignore                # Arquivos ignorados pelo Git
-├── eslint.config.js          # Configuração do ESLint
+├── eslint.config.mjs          # Configuração do ESLint
 ├── package.json              # Dependências e scripts do projeto
 ├── package-lock.json         # Controle de versões das dependências
 ├── tsconfig.json             # Configuração do TypeScript
@@ -345,11 +348,11 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 | Menu Autores | Menu Livros | Menu Clientes |
 |:--------------:|:------------:|:--------------:|
-| <img src="./assets/menu_autores.png" width="150%"> | <img src="./assets/menu_livros.png" width="150%"> | <img src="./assets/menu_clientes.png" width="150%"> |
+| <img src="./assets/menu_autores.png" width="200%"> | <img src="./assets/menu_livros.png" width="200%"> | <img src="./assets/menu_clientes.png" width="200%"> |
 
 | Menu Emprestimos | Menu Relatórios |
 |:---------:|:-------:|
-| <img src="./assets/menu_emprestimos.png" width="150%"> | <img src="./assets/menu_relatorios.png" width="150%"> |
+| <img src="./assets/menu_emprestimos.png" width="200%"> | <img src="./assets/menu_relatorios.png" width="1200%"> |
 
 ---
 
@@ -407,13 +410,17 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstração de alguns relatórios.*
 
-| Emprestimos Ativos | Livros Disponiveis |
+| Cliente Emprestimos Ativos | Livros Disponiveis |
 |:--------------:|:------------:|
-| <img src="./assets/relatorio_emprestimos_ativos.png" width="150%"> | <img src="./assets/relatorio_livros_disponiveis.png" width="150%">
+| <img src="./assets/relatorio_emprestimos_ativos.png" width="200%"> | <img src="./assets/relatorio_livros_disponiveis.png" width="200%">
 
-| Menu Emprestimos | Livros Emprestados |
+| Quantidade de Empréstimos por Livros | Livros Emprestados |
 |:---------:|:-------:|
-| <img src="./assets/relatorio_quantidade_emprestimos_por_livro.png" width="150%"> | <img src="./assets/relatorio_livros_emprestados.png" width="150%"> |
+| <img src="./assets/relatorio_quantidade_emprestimos_por_livro.png" width="200%"> | <img src="./assets/relatorio_livros_emprestados.png" width="200%"> |
+
+| Livros cadastrados por Autor
+|:---------:|
+| <img src="./assets/relatorio_livorsCadastrados_por_autor.png" width="80%"> 
 
 ---
 
@@ -421,14 +428,28 @@ A seguir são apresentados alguns exemplos da execução da aplicação durante 
 
 > *Demonstração de mensagens de erro geradas pela aplicação.*
 
-Exemplos:
+| Nome inválido | E-mail inválido | E-mail duplicado |
+|:--------------:|:------------:|:--------------:|
+| <img src="./assets/cadastro_cliente_nomeInvalido.png" width="200%"> | <img src="./assets/cadastro_cliente_emailInvalido.png" width="200%"> | <img src="./assets/cadastro_emailDuplicado.png" width="200%"> |
 
-- Autor não encontrado;
-- Livro indisponível para empréstimo;
-- Cliente inexistente;
-- CPF inválido;
-- E-mail inválido;
-- Livro já emprestado.
+
+| Livro Não encontrado - ID | Livro Não encontrado - Nome |
+|:---------:|:-------:|
+| <img src="./assets/livro_naoEncontrado_Id.png" width="200%"> | <img src="./assets/livro_naoEncontrado_Nome.png" width="200%"> |
+
+| Cliente Não encontrado - ID | Cliente Não encontrado - Nome|
+|:--------------:|:------------:|
+| <img src="./assets/cliente_naoEncontrado_ID.png" width="200%"> | <img src="./assets/cliente_naoEncontrado_Nome.png" width="200%"> 
+
+---
+| Empréstimo indisponível |
+|:--------------:|
+| <img src="./assets/emprestimo_indisponivel.png" width="200%"> 
+
+| Empréstimo Não encontrado - ID | Empréstimo Não encontrado - ID Livro|
+|:--------------:|:------------:|
+| <img src="./assets/emprestimo_naoEncontrado_ID.png" width="200%"> | <img src="./assets/emprestimo_naoEncontrado_IdLivro.png" width="200%"> 
+
 
 ---
 
@@ -477,33 +498,22 @@ O gerenciamento das atividades foi realizado utilizando um quadro Kanban no Trel
 
 **Link do quadro:**
 
-> https://trello.com/SEU-LINK-AQUI
+> https://trello.com/invite/b/6a48631c8e2aa1de3633a916/ATTIac1b1221e58f3520fa12a2fcee5ba50b60CE024E/livraria
 
 ---
 
 # Melhorias Futuras
 
-Entre as possíveis evoluções para o projeto estão:
-
-- Implementação de autenticação de usuários.
-- Controle de níveis de acesso (Administrador e Operador).
-- Histórico completo de empréstimos por cliente.
-- Renovação automática de empréstimos.
-- Sistema de multas por atraso na devolução.
-- Reserva de livros indisponíveis.
-- Paginação na listagem de registros.
-- Exportação de relatórios em PDF e Excel.
-- Dashboard administrativo para visualização de indicadores.
-- Migração da interface em terminal para uma API REST utilizando Express.js.
-- Desenvolvimento de uma interface Web para consumo da API.
-- Containerização da aplicação utilizando Docker.
+- Relação N:N entre autores e livros (tabela intermediária `autores_livros`), permitindo livros escritos por mais de um autor
+- Autenticação e controle de níveis de acesso (Administrador/Operador)
+- Renovação automática de empréstimos e sistema de multas por atraso
+- Reserva de livros indisponíveis
+- Paginação e exportação de relatórios (PDF/Excel)
+- Migração para API REST (Express.js) com interface Web
+- Containerização com Docker
 
 ---
 
 # Considerações Finais
 
-Este projeto permitiu consolidar conhecimentos fundamentais para o desenvolvimento de aplicações Back-End utilizando **Node.js**, **TypeScript** e **PostgreSQL**, aplicando conceitos de Programação Orientada a Objetos, arquitetura em camadas, modelagem de banco de dados, consultas SQL e boas práticas de desenvolvimento.
-
-Além da implementação das funcionalidades propostas, buscou-se desenvolver uma aplicação organizada, escalável e de fácil manutenção, seguindo uma estrutura semelhante à utilizada em projetos profissionais.
-
-O desenvolvimento também proporcionou experiência com versionamento utilizando **Git** e **GitFlow**, documentação técnica em **Markdown** e organização das atividades através de um quadro **Kanban**, reforçando práticas amplamente utilizadas no mercado de desenvolvimento de software.
+Este projeto consolidou conhecimentos de Back-End com **Node.js**, **TypeScript** e **PostgreSQL**, aplicando POO, arquitetura em camadas, modelagem de banco e boas práticas — além de experiência prática com **Git/GitFlow** e organização via **Kanban**.
